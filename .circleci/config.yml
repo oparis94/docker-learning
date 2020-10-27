@@ -27,6 +27,13 @@ jobs:
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
+  deploy:
+    executor: docker/docker
+    steps:
+      - add_ssh_keys:
+        fingerprints:
+          - "bf:8b:bd:18:ab:7c:8e:89:fe:6c:b8:7e:75:a3:ea:83"
+      - run: ssh -oStrictHostKeyChecking=no docker@34.126.69.46 './deploy.sh'
 
 workflows:
   my-pipeline:
@@ -39,4 +46,7 @@ workflows:
             branches:
               only:
                 - master
+      - deploy:
+        requires:
+          - build-and-push
 
