@@ -5,4 +5,42 @@
 # docker pull <ImageName:Tag>
 Nếu chỉ để ImageName mà không dùng Tag thì tự động tải image bản sau cùng.
 
+3. Hiển thị các image trên server
+# docker images
 
+4. Xóa image
+# docker rmi [OPTIONS] <ImageName> or <ImageID>
+
+5. Build container từ image
+# docker run -it --name <Tên container> -h <Hostname cho container> <ImageName hoặc ImageID cần build container>
+
+6. Xem các container đang chạy
+# docker ps
+
+7. Xem tất cả các container đang có, bao gồm cả container đang chạy và stop
+# docker ps -a
+
+8. Kết nối terminal vào container
+# docker attach <ContainerNam hoặc ContainerID>
+
+9. Thoát khỏi terminal Container nhưng không stop container
+Nhấn CTRL + Q hoặc CTRL + P
+
+10. Start container đang stop
+# docker start <ContainerName hoặc ContainerID>
+
+11. Stop container đang chạy
+# docker stop <ContainerName hoặc ContainerID>
+
+12. Xóa container
+# docker rm <ContainerName hoặc ContainerID>
+Nếu container đang chạy nhưng buộc xóa thì thêm tham số -f
+
+13. Thực hiện command trong container từ host mà không cần kết nối terminal vào docker
+# docker exec [OPTIONS] <ContainerName hoặc ContainerID> <Command cần thực hiện trên container>
+
+14. Tạo một image mới từ container đã được thay đổi
+# docker commit [OPTIONS] <ContainerName hoặc ContainerID> <Tên image[:Tag]>
+
+15. Lưu image thành file .tar để lưu trữ hoặc chia sẻ
+# docker save -o <Đường dẫn lưu file/Tên file.tar> <ImagerName hoặc ImageID>
