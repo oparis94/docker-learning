@@ -1,6 +1,6 @@
 1. Search image from Repository
 # docker search [OPTIONS] <ImageName>
-s
+
 2. Tải image từ Repository (từ trang docker hub) về server
 # docker pull <ImageName:Tag>
 Nếu chỉ để ImageName mà không dùng Tag thì tự động tải image bản sau cùng.
@@ -44,3 +44,42 @@ Nếu container đang chạy nhưng buộc xóa thì thêm tham số -f
 
 15. Lưu image thành file .tar để lưu trữ hoặc chia sẻ
 # docker save -o <Đường dẫn lưu file/Tên file.tar> <ImagerName hoặc ImageID>
+
+16. Phục hồi file .tar thành image để build container
+# docker load -i <Tên file image đã lưu>
+# docker tag <ImageID> <NewImageName:NewTag>
+
+---------------------------------------Quản lý ổ đĩa------------------------------------------------------------
+Chia sẻ dữ liệu giứa máy host và container
+# docker run -it --name <Đặt tên cho container> -h <Đặt hostname cho container> -v <Thư mục trên máy host>:<Thư mục trên container> <ImageID>
+
+Chia sẻ dữ liệu giữa các container với nhau
+# docker run -it  --name <Đặt tên cho container> -h <Đặt hostname cho container> --volumes-from <Container đang chạy> <ImageID để build container mới>
+
+Liệt kê ổ đĩa đang có
+# docker volume ls
+
+Tạo ổ đĩa
+# docker volume create <Tên ổ đĩa>
+
+Kiểm tra thông tin ổ đĩa
+# docker volume inspect <Tên ổ đĩa>
+
+Xóa ổ đĩa
+# docker volume rm <Tên ổ đĩa>
+
+Gán ổ đĩa cho container
+# docker run -it --name <Đặt tên cho container> -h <Đặt hostname cho container> --mount source=<Tên ổ đĩa>, targert=<Tên thự mục trong container> <ImageID>
+
+Tạo ổ đĩa ánh xạ trên thư mục của máy host
+# docker volume create --opt device=<Đường dẫn thư mục của máy host> --opt type=none --opt o=bind <Tên ổ đĩa>
+
+Gán ổ đĩa dạng ánh xạ ở trên vào container
+# docker run -it --name <Đặt tên cho container> -h <Đặt hostname cho container> -v <Tên ổ đĩa ánh xạ>:<Tên thư mục trong container> <ImageID>
+
+------------------------------------------------------Quản lý network----------------------------------------------------------
+Xem các network đang có
+# docker network ls
+
+Xem chi tiết một network nào đó
+# docker network inspect <Tên network>
