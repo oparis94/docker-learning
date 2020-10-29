@@ -1,6 +1,6 @@
 1. Search image from Repository
 # docker search [OPTIONS] <ImageName>
-
+s
 2. Tải image từ Repository (từ trang docker hub) về server
 # docker pull <ImageName:Tag>
 Nếu chỉ để ImageName mà không dùng Tag thì tự động tải image bản sau cùng.
