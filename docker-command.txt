@@ -8,6 +8,8 @@ Nếu chỉ để ImageName mà không dùng Tag thì tự động tải image b
 3. Hiển thị các image trên server
 # docker images
 
+Đổi tên image
+docker tag <ImageName_Old:tag> <ImageName_New:tag>
 4. Xóa image
 # docker rmi [OPTIONS] <ImageName> or <ImageID>
 
