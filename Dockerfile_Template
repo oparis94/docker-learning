@@ -1,0 +1,16 @@
+# Tải bản image từ docker hub về host nếu trên host không có sẵn
+FROM ubuntu:18.04
+
+# Chạy các lệnh ubuntu trong quá trình build image
+RUN apt-get update -y && \ 
+    apt-get install python3 -y && \
+    apt-get install python-pip -y
+
+# Tạo thư mục /app trong container
+WORKDIR /app
+
+# Copy toàn bộ file/thư mục hiện tại vào thư mục đang làm việc của container (/app)
+COPY . .
+
+# Sau khi khởi động container thì chạy lệnh # python3 app.py
+CMD ["python3", "app.py"]
