@@ -1,0 +1,16 @@
+# Khai báo version của docker-compose
+version: "3.7"
+services:
+  # Tạo 1 service tên là "app-flask"
+  app-flask:
+    # Khai báo tên image để tạo docker (thường là tên image đã được build từ Dockerfile)
+    image: learning-docker/python-flask:v1
+    # Đặt tên cho container là "flask-docker"
+    container_name: flask-docker
+    # Tạo biến môi trường, gọi biến bằng cú pháp <${variable_name}>. Nên tạo file biến môi trường .env nằm chung cấp với file docker-compose
+    environment:
+      PORT: ${DOCKER_PORT}
+    # Map port
+    ports:
+      - "${HOST_PORT}:${DOCKER_PORT}"
+    restart: unless-stopped
